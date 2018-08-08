@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>JanHIT</title>
+    
+    <!-- Meta OG -->
+    <meta property="og:title" content="Simple login form - Material Admin Dashboard">
+    <meta property="og:description" content="Basic login form with nothing more than just required minimum to let your users log into teir accounts.">
+    <meta property="og:image" content="../../../../img/Live/MDB/product-page.jpg">
+    <meta property="og:url" content="login.html">
+    <meta property="og:site_name" content="mdbootstrap.com">
+    <!-- /Meta OG -->
+
+    <!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:description" content="Basic login form with nothing more than just required minimum to let your users log into teir accounts." />
+	<meta name="twitter:title" content="Simple login form - Material Admin Dashboard" />
+	<meta name="twitter:site" content="@MDBootstrap" />
+	<meta name="twitter:image" content="../../../../img/Live/MDB/product-page.jpg" />
+	<meta name="twitter:creator" content="@MDBootstrap" />
+	<!-- /Twitter Card -->
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../../../../maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.css" rel="stylesheet">
+
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Customizer -->
+    <link rel="stylesheet" href="../../css/customizer.min.css">
+	
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	
+
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDcqbvZeYNMPrn6732rVxjHwHgvRD8fACc",
+    authDomain: "janhit-f0427.firebaseapp.com",
+    databaseURL: "https://janhit-f0427.firebaseio.com",
+    projectId: "janhit-f0427",
+    storageBucket: "janhit-f0427.appspot.com",
+    messagingSenderId: "844125259516"
+  };
+  firebase.initializeApp(config);
+</script>
+	<script>
+	
+		
+		
+		$(document).ready(function(){
+								$('#LoginB').click(function(){
+
+				var email = $('#form2').val();
+				  var password = $('#form4').val();
+
+				  firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+					var user = firebase.auth().currentUser;
+					if(user){
+					  location.href="home.html"
+					}
+					else{
+					  alert("login failed!!");
+					}
+
+				  }, function(error){
+					alert(error.message);
+				  });
+				});
+							
+		});
+	
+	</script>
+
+</head>
+
+<body class="fixed-sn white-skin">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-5 login-form mx-auto float-none">
+                
+                <!--Form with header-->
+                <div class="card">
+                    <div class="card-block">
+
+                        <!--Header-->
+                        <div class="form-header black">
+                            <h3><i class="fa fa-lock"></i> Login:</h3>
+                        </div>
+
+                        <!--Body-->
+                        <div class="md-form">
+                            <i class="fa fa-envelope prefix"></i>
+                            <input type="text" id="form2" class="form-control">
+                            <label for="form2">Your User ID</label>
+                        </div>
+
+                        <div class="md-form">
+                            <i class="fa fa-lock prefix"></i>
+                            <input type="password" id="form4" class="form-control">
+                            <label for="form4">Your password</label>
+                        </div>
+
+                        <div class="text-center">
+                            <button class="btn btn-primary black" id="LoginB">Login</button>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--/Form with header-->
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/tether.min.js"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    
+    <!-- Customizer -->
+    <script type="text/javascript" src="../../js/customizer.min.js"></script>
+
+</body>
+
+</html>

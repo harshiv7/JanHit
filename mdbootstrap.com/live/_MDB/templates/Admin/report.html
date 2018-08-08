@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from mdbootstrap.com/live/_MDB/templates/Admin/home v3.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Apr 2017 06:31:37 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Reported Issues</title>
+    
+    <!-- Meta OG -->
+    <meta property="og:title" content="Responsive Admin Dashboard Template">
+    <meta property="og:description" content="Proper data categorization and intuitive layout might go a long way when it comes to creating your dashboard.">
+    <meta property="og:image" content="../../../../img/Live/MDB/admin-homev3.jpg">
+    <meta property="og:url" content="home%20v3.html">
+    <meta property="og:site_name" content="mdbootstrap.com">
+    <!-- /Meta OG -->
+
+    <!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:description" content="Proper data categorization and intuitive layout might go a long way when it comes to creating your dashboard." />
+	<meta name="twitter:title" content="Responsive Admin Dashboard Template" />
+	<meta name="twitter:site" content="@MDBootstrap" />
+	<meta name="twitter:image" content="../../../../img/Live/MDB/admin-homev3.jpg" />
+	<meta name="twitter:creator" content="@MDBootstrap" />
+	<!-- /Twitter Card -->
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../../../../maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.css" rel="stylesheet">
+    <!-- Customizer -->
+    <link rel="stylesheet" href="../../css/customizer.min.css">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+     
+<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDc4UUDihtzLo2JROOb9tIXu9ah_0sdUeM",
+    authDomain: "techmafia-12d6d.firebaseapp.com",
+    databaseURL: "https://techmafia-12d6d.firebaseio.com",
+    projectId: "techmafia-12d6d",
+    storageBucket: "techmafia-12d6d.appspot.com",
+    messagingSenderId: "813601003134"
+  };
+  firebase.initializeApp(config);
+</script>
+    <script>
+    
+firebase.database().ref('/development/report/').once('value', function(snapshot) {
+
+    userDict = snapshot.val();
+
+    var data = [];
+    data.toString();
+
+    for(i=Object.keys(userDict).length-1;  i >= 0 ; i--){
+
+    
+    data.push(Object.keys(userDict)[i]);
+    var container = document.getElementById("containnercard");
+   
+    var desp = userDict[Object.keys(userDict)[i]].desp;
+    var pic = userDict[Object.keys(userDict)[i]].pic;
+    
+
+    container.innerHTML += ' <div class="row"><div class="col-md-12"><div class="card card-cascade narrower"><div class="admin-panel"><div class="row mb-1"><div class="col-md-5"><div class="view left primary-color"><h2>'+ desp +'</h2></div><div class="card-block pt-2"><table class="table no-header"><tbody><tr><td><img src="img/flags/us.png" class="flag"> United States</td><td>307</td></tr><tr><td><img src="img/flags/in.png" class="flag"> India</td><td>504</td></tr></tbody></table><button class="btn-flat waves-effect float-right">View full report</button></div></div><div class="col-md-7"><div class="view right primary-color map-container"><img class="" src="'+pic+'" style="width: 100%; height: 400px" alt="Option 1"></div></div></div></div></div>ç</div></div>';
+}
+});
+        
+        </script>
+
+</head>
+
+<body class="fixed-sn white-skin">
+
+   <!--Double navigation-->
+    <header>
+        <!-- Sidebar navigation -->
+        <ul id="slide-out" class="side-nav fixed sn-bg-1 custom-scrollbar">
+            <!-- Logo -->
+            <li>
+                <div class="user-box">
+                    <img src="cropped_final.png" class="img-fluid rounded-circle" id="myimg">
+                    <p class="user text-center black-text">VMC</p>
+                </div>
+            </li>
+            <!--/. Logo -->
+            <!-- Side navigation links -->
+            <li>
+                <ul class="collapsible collapsible-accordion">
+                   
+                 
+                 
+                   
+                    <li><a href="clients.html" class="collapsible-header waves-effect arrow-r"><i class="fa fa-trash"></i> Dustbin</a>
+                    <li><a href="invoice.html" class="collapsible-header waves-effect arrow-r"><i class="fa fa-home"></i> Public Washroom</a>
+                    <li><a href="support.html" class="collapsible-header waves-effect arrow-r"><i class="fa fa-bell"></i> Notification</a>
+                    <li><a href="faq.html" class="collapsible-header waves-effect arrow-r"><i class="fa fa-ban" aria-hidden="true"></i>BlackListed </a>
+                </ul>
+            </li>
+            <!--/. Side navigation links -->
+            <div class="sidenav-bg mask-strong"></div>
+        </ul>
+        <!--/. Sidebar navigation -->
+        
+        <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-dark scrolling-navbar double-nav">
+           
+            <!-- SideNav slide-out button -->
+            <div class="float-left">
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+                
+            </div>
+            
+            <!-- Breadcrumb-->
+            <ol class="breadcrumb hidden-lg-down">
+                <li class="breadcrumb-item active"><a href="#">Vadodara Municipal Corporation</a></li>
+                <li class="breadcrumb-item active">VMC</li>
+            </ol>
+            
+            <!--Navbar links-->
+            
+            <!--/Navbar links-->
+            
+        </nav>
+        <!-- /.Navbar -->
+        
+    </header>
+    <!--/.Double navigation-->
+
+
+    <!--Main layout-->
+    <main class="">
+        <div class="container-fluid">
+
+<!--Section heading-->
+            <h1 class="text-left">JanHit</h1>
+            <p>Developed by TechWolf </p>
+            <hr>
+            <br>
+
+          
+            <!--Section: Main Chart-->
+            <section class="section">
+
+                <div id="containnercard"></div>
+</section>
+          
+
+        </div>
+    </main>
+    <!--/Main layout-->
+
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large red">
+            <i class="fa fa-pencil"></i>
+        </a>
+
+        <ul>
+            <li><a class="btn-floating red"><i class="fa fa-star"></i></a></li>
+            <li><a class="btn-floating yellow darken-1"><i class="fa fa-user"></i></a></li>
+            <li><a class="btn-floating green"><i class="fa fa-envelope"></i></a></li>
+            <li><a class="btn-floating blue"><i class="fa fa-shopping-cart"></i></a></li>
+        </ul>
+    </div>
+
+    <!-- SCRIPTS -->
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+
+    <script>
+        $("#navigation").load("components/navigation.html");
+    </script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/tether.min.js"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    
+    <!-- Customizer -->
+    <script type="text/javascript" src="../../js/customizer.min.js"></script>
+
+    <script>
+        $(function() {
+            var data = {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [{
+                    label: "My First dataset",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(0,0,0,.15)",
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    backgroundColor: "#4CAF50"
+                }, {
+                    label: "My Second dataset",
+                    fillColor: "rgba(255,255,255,.25)",
+                    strokeColor: "rgba(255,255,255,.75)",
+                    pointColor: "#fff",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(0,0,0,.15)",
+                    data: [28, 48, 40, 19, 86, 27, 90]
+                }]
+            };
+
+
+            var dataPie = [{
+                value: 300,
+                color: "#F7464A",
+                highlight: "#FF5A5E",
+                label: "Red"
+            }, {
+                value: 50,
+                color: "#46BFBD",
+                highlight: "#5AD3D1",
+                label: "Green"
+            }, {
+                value: 100,
+                color: "#FDB45C",
+                highlight: "#FFC870",
+                label: "Yellow"
+            }]
+
+            var option = {
+                responsive: true,
+                // set font color
+                scaleFontColor: "#fff",
+                // font family
+                defaultFontFamily: "'Roboto', sans-serif",
+                // background grid lines color
+                scaleGridLineColor: "rgba(255,255,255,.1)",
+                // hide vertical lines
+                scaleShowVerticalLines: false,
+            };
+
+            //Get the context of the canvas element we want to select
+            // var ctx = document.getElementById("sales").getContext('2d');
+            // var myLineChart = new Chart(ctx).Line(data, option); //'Line' defines type of the chart.
+
+            // Get the context of the canvas element we want to select
+            var ctx = document.getElementById("conversion").getContext('2d');
+            var myRadarChart = new Chart(ctx).Radar(data, option);
+
+            // Get the context of the canvas element we want to select
+            var ctx = document.getElementById("traffic").getContext('2d');
+            var myBarChart = new Chart(ctx).Bar(data, option);
+
+            // Get the context of the canvas element we want to select
+            var ctx = document.getElementById("seo").getContext('2d');
+            var myPieChart = new Chart(ctx).Pie(dataPie, option);
+
+        });
+    </script>
+
+    <script>
+        $(function() {
+            $('.min-chart#chart-sales').easyPieChart({
+                barColor: "#4caf50",
+                onStep: function(from, to, percent) {
+                    $(this.el).find('.percent').text(Math.round(percent));
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Data Picker Initialization
+        $('.datepicker').pickadate();
+
+
+        // Material Select Initialization
+        $(document).ready(function() {
+            $('.mdb-select').material_select();
+        });
+
+        // Sidenav Initialization
+        $(".button-collapse").sideNav();
+
+        // Tooltips Initialization
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+
+    <!-- JVectorMap -->
+    <link rel="stylesheet" href="js/vendor/jvectormap/jquery-jvectormap-2.0.3.css" type="text/css" media="screen"/>
+    <script src="js/vendor/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="js/vendor/jvectormap/jquery-jvectormap-world-mill.js"></script>
+
+    <script>
+        $(function(){
+            $('#world-map').vectorMap({map: 'world_mill_en', zoomOnScroll: false});
+        });
+    </script>
+    <!-- /.JVectorMap -->
+
+</body>
+
+
+<!-- Mirrored from mdbootstrap.com/live/_MDB/templates/Admin/home v3.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Apr 2017 06:31:55 GMT -->
+</html>

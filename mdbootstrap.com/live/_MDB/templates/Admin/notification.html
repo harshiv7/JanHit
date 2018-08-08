@@ -1,0 +1,233 @@
+
+<html>
+
+<head>
+ 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Notification</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+	 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	 
+	</script>
+	<script>
+
+		$(document).ready(function(){
+		 var config = {
+    apiKey: "AIzaSyDc4UUDihtzLo2JROOb9tIXu9ah_0sdUeM",
+    authDomain: "techmafia-12d6d.firebaseapp.com",
+    databaseURL: "https://techmafia-12d6d.firebaseio.com",
+    projectId: "techmafia-12d6d",
+    storageBucket: "techmafia-12d6d.appspot.com",
+    messagingSenderId: "813601003134"
+  };
+  firebase.initializeApp(config);
+				$('#SubmitData').click(function(){
+				firebase.auth().onAuthStateChanged(function(user) {
+      if(user){
+				
+					
+					alert('ahsg');
+                    var today = new Date();
+                    console.log(today.toUTCString());
+                    var data = today.toLocaleTimeString() + " " + "("+today.toLocaleDateString() +")" ;
+          
+                    var title = $('#form3').val();
+					var body = $('#form4').val();
+                    var timeStamp = data;
+
+					 firebase.database().ref('/development/notification/').push({
+					
+					'title' : title,
+					'body' : body,
+                    'timeStamp' : timeStamp
+
+				  }, function(error) {
+					alert(error.message);
+					});
+					alert('rrrrr');
+					
+			  
+				  
+				}
+				else{
+				alert("First login Your Account.")
+				}
+				});				
+				  
+				});
+							
+		});
+        
+        function getDate(){
+            var today = new Date();
+            console.log(today.toUTCString());
+            var data = today.toUTCString();
+            document.getElementById('#form5').innerHTML = today.toUTCString();
+        }
+        
+	
+	</script>
+    <style> ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+</style>
+		
+</head>
+  
+    <body class="fixed-sn white-skin">
+       
+    <!--Double navigation-->
+    <!--Main layout-->
+    <main class="">
+        <div class="container-fluid">
+            <!-- Section: Edit Account -->
+            <section class="section">
+                <!-- First row -->
+                <div class="row">
+                    <!-- First column -->
+                    <div class="col-lg-4">
+
+                        <!--Card-->
+                        <div class="card card-cascade narrower mb-r">
+                            <div class="admin-panel info-admin-panel">
+                                <!--Card image-->
+                                <div class="view Black">
+                                    <h5>Notifications</h5>
+                                </div>
+                                <!--/Card image-->
+                                <!--Card content-->
+                                <div class="card-block">
+                                    <!-- Edit Form -->
+                                        <!--First row-->
+                                        <div class="row">
+                                            <!--First column-->
+                                            <div class="col-md-6">
+                                                <div class="md-form">
+                                                    <input type="text" id="form3" class="form-control validate">
+                                                    <label for="form3" data-error="wrong" data-success="right">Title</label>
+                                                </div>
+                                            </div>
+                                            <!--Second column-->
+                                            <div class="col-md-6">
+                                                <div class="md-form">
+                                                    <input type="text" id="form4" class="form-control validate">
+                                                    <label for="form4" data-error="wrong" data-success="right">
+                                                        Body</label>
+                                                </div>
+                                            </div>
+                                              
+                                        </div>
+                                        <!--/.First row-->
+                                        <!--First row-->
+                                        
+                                        <!--/.Second row-->
+                                        <!-- Fourth row -->
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <h1 type="submit" value="Submit" id="SubmitData" class="btn btn-primary black">Submit</h1>
+                                            </div>
+                                        </div>
+                                        <!-- /.Fourth row -->
+                                    <!-- Edit Form -->
+                                </div>
+                                <!--/.Card content-->
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!-- /.First column -->
+                     <div class="col-lg-8"><!-- here faq-->
+                        <!--Card-->
+                         <div class="container-fluid">
+            
+            <!-- FAQ Seoction -->
+        
+
+                <!-- Section Heading -->
+             
+
+                <!-- First row -->
+                <div class="container-fluid">
+            <!--Classic admin cards-->
+             <section class="section section-intro">
+
+                <!--First row-->
+                <div id="containnercard">
+                    
+                </div>
+                <!--/First row-->
+
+            </section>
+            <!--/Classic admin cards-->
+
+
+        </div>
+            
+                <!-- /.First row -->
+        
+
+        </div>
+                        
+                    </div>
+                    <!-- Second column -->
+                    <div class="col-lg-12">
+                        
+                        <!--/.Card-->
+                    </div>
+                    <!-- /.Second column -->
+                </div>
+            </section>
+            <!-- /.Section: Edit Account -->
+        </div>
+    </main>
+    <!--/Main layout-->
+   
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/tether.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.js"></script>
+
+    <script>
+    // Data Picker Initialization
+    $('.datepicker').pickadate();
+
+
+    // Material Select Initialization
+    $(document).ready(function() {
+        $('.mdb-select').material_select();
+    });
+
+    // Sidenav Initialization
+    $(".button-collapse").sideNav();
+    var el = document.querySelector('.custom-scrollbar');
+    Ps.initialize(el);
+
+    // Tooltips Initialization
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
+</body>
+</html>

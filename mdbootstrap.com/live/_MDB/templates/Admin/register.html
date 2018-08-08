@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+      
+      .right{
+          float:left;
+          width: 27%;
+          height: 400px;
+          margin-left: 0.9%;
+          padding-top: 3%;
+      }
+      
+      .card{
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          padding: 0.7%;
+          height:auto;
+      }
+      input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #000000;
+    border-radius: 4px;
+}
+      #searchInput{
+          width: 30%;
+          border: 1px solid black;
+      }
+      .button {
+    background-color:#000000;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+      .button:hover{
+           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      
+       .nav{
+    list-style-type:none;
+    overflow: hidden;
+    background-color: #000000;
+    padding-top:0%;
+    height: 21%;
+           
+    
+}
+       #h2{
+           margin-top: 1.3%;
+           margin-bottom: 1.3%;
+            margin-left: 20px;
+           font-family: courier;
+          font-weight: bold;
+          letter-spacing: 5px;
+          font-size: 40px;
+          color:whitesmoke;
+      }
+        input[type=file]{
+             background-color:#000000;
+    border: none;
+    color: white;
+    padding: 15px 26px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+        }
+        body{
+            padding: 0px;
+            margin: 0;
+        }
+   </style>
+	<title>Blacklisted</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDcqbvZeYNMPrn6732rVxjHwHgvRD8fACc",
+    authDomain: "janhit-f0427.firebaseapp.com",
+    databaseURL: "https://janhit-f0427.firebaseio.com",
+    projectId: "janhit-f0427",
+    storageBucket: "janhit-f0427.appspot.com",
+    messagingSenderId: "844125259516"
+  };
+  firebase.initializeApp(config);
+</script>
+
+</head>
+<body>
+	 <div class="nav">
+    <h2 id="h2">G.O.I.</h2>
+    </div>
+        <div class="right" >
+            <div class="card">           
+                <div class="input" style="width:100%; height: auto;">
+                      <input type="text" name="name" id="name"  placeholder="Name">
+                      <input type="text" name="numb" id="numb"  placeholder="Phone Number"> 
+                    <input type="text" name="addr" id="addr" placeholder="Address" >
+                        <input type="text" name="elid" id="elid" placeholder="Election Id">
+                      <input type="text" name="disName" id="disName" placeholder="Status"> 
+                    <label>
+                        
+                        <input type="file" name="upload" class="upload-group" id="file">
+                           </label>     
+                    
+                        </div>  
+                <button type="button" id="uploadbutton"class="button" onclick="uploadFile()">ADD</button>
+                </div>
+        
+        </div>
+	<script>
+		var selectedFile;
+
+		$('#file').on("change", function(event){
+			selectedFile = event.target.files[0];
+		}); 
+
+		function uploadFile(){
+			var filename = selectedFile.name;
+			// Create a root reference
+			var storageRef = firebase.storage().ref('/documents/' + filename);
+			var uploadTask = storageRef.put(selectedFile);
+
+			// Register three observers:
+				// 1. 'state_changed' observer, called any time the state changes
+				// 2. Error observer, called on failure
+				// 3. Completion observer, called on successful completion
+				uploadTask.on('state_changed', function(snapshot){
+				  // Observe state change events such as progress, pause, and resume
+				  // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+				  var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+				  console.log('Upload is ' + progress + '% done');
+				  switch (snapshot.state) {
+				    case firebase.storage.TaskState.PAUSED: // or 'paused'
+				      console.log('Upload is paused');
+				      break;
+				    case firebase.storage.TaskState.RUNNING: // or 'running'
+				      console.log('Upload is running');
+				      break;
+				  }
+				}, function(error) {
+				  // Handle unsuccessful uploads
+				}, function() {
+				  // Handle successful uploads on complete
+				  // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+				  var postKey = firebase.database().ref('development/register/').push().key;
+				  var downloadURL = uploadTask.snapshot.downloadURL;
+				  var updates = {};
+				  var postData = {
+				  	url : downloadURL,
+				  	name: $("#name").val(),
+				  	numb: $("#numb").val(),
+				  	addr: $("#addr").val(),
+            elid: $("#elid").val(),
+				  	disName: $("#disName").val()
+
+				  }
+				  updates['/development/register/' + postKey] = postData ;
+				  firebase.database().ref().update(updates); 
+				  console.log(downloadURL);
+				});
+		}
+	</script>
+	
+</body>
+
+
+</html>
